@@ -1,3 +1,6 @@
+#database config
+dbconfig.json
+
 #.js files transpilated by typescript
 *.js
 *.js.map
