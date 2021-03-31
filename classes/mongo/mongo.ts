@@ -1,17 +1,16 @@
 import { BaseData } from "./basedata";
-import * as databaseData from "./../../dbconfig.json";
 
 export class Mongo extends BaseData{
-    constructor(){
-        super();
-        this.initialize();
+    private databaseName:string;
+    constructor(connectionString: string, database:string ){
+        super(connectionString);
+        this.databaseName = database;
     }
     
-    private async initialize(){
-        await this.connect();
+    public async initialize(){
+         await Mongo.client.connect();
+         Mongo.db = await Mongo.client.db(this.databaseName);
     }
-
-
     private async createCollection(name: string){
         try{
             // this.client.createCollection(name);

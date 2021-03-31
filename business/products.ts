@@ -7,7 +7,7 @@ export class ProductBusiness{
         this._data = new Data();
     }
 
-    public getProducts(){
-        return this._data.getProducts();
+    public async getProducts(){
+        return await this._data.getProducts();
     }
 }

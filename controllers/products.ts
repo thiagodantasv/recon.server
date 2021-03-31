@@ -6,7 +6,7 @@ export class ProductController{
         this._business = new Business();
     }
 
-    public getProducts(){
-        return this._business.getProducts();
+    public async getProducts(){
+        return await this._business.getProducts();
     }
 }

@@ -30,8 +30,8 @@ export class Router{
 
     private initializeProductController(){
         try{
-            this.app.get("/getProducts", (request, response) => {
-                response.send(this._productController.getProducts());
+            this.app.get("/getProducts", async (request, response) => {
+                response.send(await this._productController.getProducts());
             });
 
             this.initializedControllers.push("Product");
