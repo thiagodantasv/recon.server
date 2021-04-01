@@ -39,6 +39,7 @@ let startServer = async() => {
     mongo.initialize();
     
     const app = express();
+    app.use(express.json());
     const router = new Router(app);
     await router.initializeRoutes().then((controllers) => {
         controllers.map((controller) => {
@@ -46,7 +47,6 @@ let startServer = async() => {
         })
     });
 
-    
     app.listen(port, () => {
         console.log(`Server listening in: ${port}`);
     });    
