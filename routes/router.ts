@@ -24,19 +24,19 @@ export class Router{
             }catch(error){
                 reject(error);
             }
-
         })
     }
 
     private initializeProductController(){
         try{
             this.app.get("/getProducts", async (request, response) => {
-                response.send(await this._productController.getProducts());
+                let result = await this._productController.getProducts();
+                response.status(result.status).send(result.content);
             });
 
             this.app.post("/postProduct", async (request, response, next) => {
                 let result = await this._productController.postProduct(request.body);
-                // response.status(result.status).send(result);
+                response.status(result.status).send(result.content);
             });
 
             this.initializedControllers.push("Product");
