@@ -2,6 +2,7 @@ import { ProductBusiness as Business } from "./../business";
 import Response from './../classes/response';
 import { IPostProductResponse, IPostProductRequest } from './../classes/interfaces/api/postProduct';
 import { IGetProductsResponse, IGetProductsRequest } from './../classes/interfaces/api/product/getProducts';
+import { IGetProductByIdResponse, IGetProductByIdRequest } from './../classes/interfaces/api/product/getProductById';
 import IError from './../classes/interfaces/api/error';
 import { RequisitionStatus } from './../classes/interfaces/httpstatus';
 
@@ -17,7 +18,18 @@ export class ProductController{
         }catch(err){
             let error:IError = {
                 error: err
-            }
+            };
+            return new Response<IError>(RequisitionStatus.ServerError, error);
+        }
+    }
+
+    public async getProductById(request: IGetProductByIdRequest): Promise<Response<IGetProductByIdResponse | IError>>{
+        try{
+            return await this._business.getProductById(request);
+        }catch(err){
+            let error:IError = {
+                error: err
+            };
             return new Response<IError>(RequisitionStatus.ServerError, error);
         }
     }
@@ -28,7 +40,7 @@ export class ProductController{
         }catch(err){
             let error: IError = {
                 error:err
-            }
+            };
             return new Response<IError>(RequisitionStatus.ServerError, error);
         }
     }

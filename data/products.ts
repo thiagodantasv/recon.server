@@ -1,6 +1,6 @@
 import { IPostProductRequest } from './../classes/interfaces/api/postProduct';
 import { Mongo } from './../classes/mongo';
-import { ObjectID } from 'mongodb';
+import { ObjectId } from 'mongodb';
 
 export class ProductData{
     constructor(){}
@@ -10,8 +10,8 @@ export class ProductData{
         return result;
     }
 
-    public async getProductById(_id: ObjectID){
-        let result = await Mongo.productsCollection.find({_id: _id});
+    public async getProductById(_id: ObjectId){
+        let result = await Mongo.productsCollection.find({_id: _id}).toArray();
         return result;
     }
 
